@@ -7,21 +7,27 @@ const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
 function App() {
   const [games, setGames] = useState<Game[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
+        setIsLoading(true);
         const res = await axios.get(
           `https://api.rawg.io/api/games?key=${API_KEY}`
         );
         setGames(res.data.results);
       } catch (err) {
         console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchGames();
   }, []);
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <>
