@@ -1,24 +1,59 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import type { Game } from './types/game';
 
 const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
 function App() {
+  const [games, setGames] = useState<Game[]>([]);
+
   useEffect(() => {
-    axios
-      .get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-      .then((res) => {
-        console.log('게임 리스트:', res.data.results);
-      })
-      .catch((err) => console.error(err));
+    const fetchGames = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.rawg.io/api/games?key=${API_KEY}`
+        );
+        setGames(res.data.results);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchGames();
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Game Archive</h1>
-      <p>콘솔창을 확인해 보세요!</p>
-    </div>
+      <div className="grid-wrap">
+        {games.map((game) => (
+          <article key={game.id} className="game-card">
+            {/* 게임의 백그라운드 이미지 표시 */}
+            <figure className="card-image-wrap">
+              <img src={game.background_image} alt={game.name} />
+            </figure>
+
+            {/* 게임의 제목과 메타 정보 */}
+            <div className="card-content">
+              <header>
+                <h2 className="card-title">{game.name}</h2>
+              </header>
+              <section className="card-info">
+                <div className="platform-list">
+                  {game.parent_platforms.map(({ platform }) => (
+                    <span key={platform.id}>{platform.name}</span>
+                  ))}
+                </div>
+
+                {/* 메타크리틱 점수 */}
+                <span className="metacritic">{game.metacritic}</span>
+              </section>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
   );
 }
 

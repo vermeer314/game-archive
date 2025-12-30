@@ -4,7 +4,7 @@ export interface Game {
   background_image: string;
   released: string;
   rating: number;
-  metacritics: number;
+  metacritic: number;
   playtime: number;
   platform: Platform;
   //버전이 다른 플랫폼들을 동일한 플랫폼으로 묶어주기
