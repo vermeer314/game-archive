@@ -13,9 +13,12 @@ function App() {
     const fetchGames = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get(
-          `https://api.rawg.io/api/games?key=${API_KEY}`
-        );
+        const res = await axios.get(`https://api.rawg.io/api/games`, {
+          params: {
+            key: API_KEY,
+            page_size: 40,
+          },
+        });
         setGames(res.data.results);
       } catch (err) {
         console.error(err);
@@ -53,7 +56,7 @@ function App() {
                 </div>
 
                 {/* 메타크리틱 점수 */}
-                <span className="metacritic">{game.metacritic}</span>
+                <span className="metacritic">score: {game.metacritic}</span>
               </section>
             </div>
           </article>
