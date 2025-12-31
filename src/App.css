@@ -38,3 +38,7 @@
   border-radius: '4px';
   font-weight: 'bold';
 }
+
+.active {
+  color: blue;
+}

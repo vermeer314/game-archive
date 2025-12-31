@@ -4,6 +4,7 @@ import axios from 'axios';
 import type { Game, GameQueryParams, Genre } from './types/game';
 import GameGrid from './components/GameGrid';
 import GameSort from './components/GameSort';
+import GenreList from './components/GenreList';
 
 const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
@@ -62,20 +63,15 @@ function App() {
   return (
     <div className="container">
       <h1>Game Archive</h1>
-      <aside className="sidebar">
-        <ul>
-          {genres.map((genre) => (
-            <li key={genre.id}>
-              <button onClick={() => setSelectedGenre(genre.slug)}>
-                {genre.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      {/* Sidebar */}
+      <GenreList
+        genres={genres}
+        selectedGenre={selectedGenre}
+        onSelectGenre={setSelectedGenre}
+      />
       {/* Ordering */}
-      <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
       <main className="main-content">
+        <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
         <GameGrid games={games} />
       </main>
     </div>
