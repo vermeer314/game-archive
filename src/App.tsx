@@ -8,6 +8,13 @@ const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 function App() {
   const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState('');
+
+  const getBadgeColor = (score: number) => {
+    if (score >= 75) return '#66cc33';
+    if (score >= 50) return '#ffcc33';
+    return '#ff0000';
+  };
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -17,6 +24,7 @@ function App() {
           params: {
             key: API_KEY,
             page_size: 40,
+            ordering: sortOrder,
           },
         });
         setGames(res.data.results);
@@ -28,13 +36,28 @@ function App() {
     };
 
     fetchGames();
-  }, []);
+  }, [sortOrder]);
 
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <>
       <h1>Game Archive</h1>
+      {/* Ordering */}
+      <form className="select-wrap">
+        <label>Order by: </label>
+        <select
+          className="sort-select"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Relevance</option>
+          <option value="released">Release date</option>
+          <option value="-metacritic">Metacritic score</option>
+          <option value="-added">Popularity</option>
+        </select>
+      </form>
+      {/* GameCard */}
       <div className="grid-wrap">
         {games.map((game) => (
           <article key={game.id} className="game-card">
@@ -56,7 +79,15 @@ function App() {
                 </div>
 
                 {/* 메타크리틱 점수 */}
-                <span className="metacritic">score: {game.metacritic}</span>
+                <span className="rating">
+                  {game.rating}({game.ratings_count})
+                </span>
+                <span
+                  className="metacritic-badge"
+                  style={{ color: getBadgeColor(game.metacritic) }}
+                >
+                  {game.metacritic ? `${game.metacritic}` : '-'}
+                </span>
               </section>
             </div>
           </article>

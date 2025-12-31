@@ -1,6 +1,5 @@
 .grid-wrap {
   display: grid;
-  /* 화면 너비에 따라 자동으로 컬럼 개수를 조절 (최소 250px) */
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
@@ -10,7 +9,6 @@
   border-radius: 10px;
   overflow: hidden;
   border: 1px black solid;
-  /* background-color: #202020; */
   transition: transform 0.2s ease-in-out;
 }
 
@@ -32,4 +30,11 @@
   object-fit: cover;
   /* 잘릴 경우 센터를 기준으로 맞춤 */
   object-position: center;
+}
+
+.metacritic-badge {
+  border: 1px solid;
+  padding: '2px 5px';
+  borderradius: '4px';
+  fontweight: 'bold';
 }
