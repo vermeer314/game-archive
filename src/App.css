@@ -39,6 +39,26 @@
   font-weight: 'bold';
 }
 
-.active {
-  color: blue;
+.sidebar button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.sidebar button.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  border-radius: 4px;
+  text-decoration: underline;
 }
