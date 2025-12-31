@@ -40,7 +40,6 @@ export interface Tag {
 }
 
 export interface GameQueryParams {
-  key: string;
   page_size: number;
   ordering: string;
   genres?: string;

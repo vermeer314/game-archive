@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Game, GameQueryParams } from '../types/game';
-import axios from 'axios';
-
-const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
+import apiClient from '../services/api-client';
 
 function useGames(sortOrder: string, selectedGenre: string) {
   const [games, setGames] = useState<Game[]>([]);
@@ -11,16 +9,16 @@ function useGames(sortOrder: string, selectedGenre: string) {
   useEffect(() => {
     const fetchGames = async () => {
       const requestParams: GameQueryParams = {
-        key: API_KEY,
         page_size: 40,
         ordering: sortOrder,
+        genres: selectedGenre || undefined,
       };
 
       if (selectedGenre) requestParams.genres = selectedGenre;
 
       try {
         setIsLoading(true);
-        const res = await axios.get(`https://api.rawg.io/api/games`, {
+        const res = await apiClient.get('/games', {
           params: requestParams,
         });
         setGames(res.data.results);
