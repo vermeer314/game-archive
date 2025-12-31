@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import type { Game, GameQueryParams, Genre } from './types/game';
 import GameGrid from './components/GameGrid';
+import GameSort from './components/GameSort';
 
 const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
@@ -73,19 +74,7 @@ function App() {
         </ul>
       </aside>
       {/* Ordering */}
-      <form className="select-wrap">
-        <label>Order by: </label>
-        <select
-          className="sort-select"
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-        >
-          <option value="">Relevance</option>
-          <option value="released">Release date</option>
-          <option value="-metacritic">Metacritic score</option>
-          <option value="-added">Popularity</option>
-        </select>
-      </form>
+      <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
       <main className="main-content">
         <GameGrid games={games} />
       </main>
