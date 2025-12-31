@@ -87,7 +87,7 @@ function App() {
         </select>
       </form>
       <main className="main-content">
-        <GameGrid games={games}></GameGrid>
+        <GameGrid games={games} />
       </main>
     </div>
   );
