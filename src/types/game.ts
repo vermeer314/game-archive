@@ -24,7 +24,7 @@ export interface Platform {
 
 export interface Genre {
   id: number;
-  nmae: string;
+  name: string;
   slug: string;
 }
 
@@ -35,6 +35,13 @@ export interface ShortScreenshot {
 
 export interface Tag {
   id: number;
-  nmae: string;
+  name: string;
   slug: string;
+}
+
+export interface GameQueryParams {
+  key: string;
+  page_size: number;
+  ordering: string;
+  genres?: string;
 }

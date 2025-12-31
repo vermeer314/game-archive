@@ -35,6 +35,6 @@
 .metacritic-badge {
   border: 1px solid;
   padding: '2px 5px';
-  borderradius: '4px';
-  fontweight: 'bold';
+  border-radius: '4px';
+  font-weight: 'bold';
 }
