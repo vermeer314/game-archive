@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import type { Game, GameQueryParams } from '../types/game';
 import apiClient from '../services/api-client';
 
-function useGames(sortOrder: string, selectedGenre: string) {
+function useGames(
+  sortOrder: string,
+  selectedGenre: string,
+  searchText: string
+) {
   const [games, setGames] = useState<Game[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -12,6 +16,7 @@ function useGames(sortOrder: string, selectedGenre: string) {
         page_size: 40,
         ordering: sortOrder,
         genres: selectedGenre || undefined,
+        search: searchText || undefined,
       };
 
       if (selectedGenre) requestParams.genres = selectedGenre;
@@ -30,7 +35,7 @@ function useGames(sortOrder: string, selectedGenre: string) {
     };
 
     fetchGames();
-  }, [sortOrder, selectedGenre]);
+  }, [sortOrder, selectedGenre, searchText]);
 
   return { games, isLoading };
 }

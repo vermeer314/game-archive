@@ -43,4 +43,5 @@ export interface GameQueryParams {
   page_size: number;
   ordering: string;
   genres?: string;
+  search?: string;
 }
