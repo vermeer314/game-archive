@@ -15,7 +15,7 @@ function GameCard({ game }: { game: Game }) {
         </header>
         <section className="card-info">
           <div className="platform-list">
-            {game.parent_platforms.map(({ platform }) => (
+            {game.parent_platforms?.map(({ platform }) => (
               <span key={platform.id}>{platform.name}</span>
             ))}
           </div>

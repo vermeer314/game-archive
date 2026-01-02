@@ -7,10 +7,25 @@
 
 .navbar {
   display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #121212;
+  gap: 25px;
+  padding: 15px;
+}
+
+.title {
+  color: gray;
+}
+
+.main-wrapper {
+  padding: 0px;
 }
 
 .main-content {
   flex: 1;
+  padding: 10px;
 }
 
 .grid-wrap {
@@ -57,7 +72,16 @@
 .sidebar {
   flex: 0 0 200px;
   position: sticky;
-  top: 20px;
+  top: 80px;
+  height: calc(100vh - 80px);
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar button {
@@ -89,4 +113,19 @@
 
 .select-wrap {
   padding: 5px 20px;
+}
+
+.search-input {
+  width: 50vw;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #333;
+  background-color: #2a2a2a;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: gray;
 }

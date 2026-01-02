@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import GameGrid from './components/GameGrid';
 import GameSort from './components/GameSort';
 import GenreList from './components/GenreList';
 import useGames from './hooks/useGames';
 import useGenres from './hooks/useGenres';
+import SearchInput from './components/SearchInput';
 
 function App() {
   const [sortOrder, setSortOrder] = useState('');
@@ -14,33 +15,18 @@ function App() {
   const { games, isLoading } = useGames(sortOrder, selectedGenre, searchText);
   const genres = useGenres();
 
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="container">
       <header className="navbar">
-        <h1>Game Archive</h1>
+        <h1 className="title">Game Archive</h1>
         {/* Searchbar */}
-        <form
-          className="search-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            // 엔터칠 때 값 전송
-            if (inputRef.current) {
-              setSearchText(inputRef.current.value.trim()); //이걸 가지고 api 요청
-              inputRef.current.value = '';
-            }
-          }}
-        >
-          <input
-            ref={inputRef}
-            className="search-input"
-            placeholder="Search"
-            type="text"
-          />
-        </form>
+        <SearchInput
+          // inputRef={inputRef}
+          onSearch={setSearchText}
+          onResetGenre={() => setSelectedGenre('')}
+        />
       </header>
 
       <div className="main-wrapper">
@@ -54,7 +40,8 @@ function App() {
         <main className="main-content">
           {/* Ordering */}
           <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
-          <GameGrid games={games} />
+          {/* 데이터를 가져올 때 헤더 부분은 유지하고 데이터를 가져오는 부분만 로딩 처리 */}
+          {isLoading ? <div>Loading...</div> : <GameGrid games={games} />}
         </main>
       </div>
     </div>

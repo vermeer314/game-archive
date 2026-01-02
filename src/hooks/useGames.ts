@@ -19,8 +19,6 @@ function useGames(
         search: searchText || undefined,
       };
 
-      if (selectedGenre) requestParams.genres = selectedGenre;
-
       try {
         setIsLoading(true);
         const res = await apiClient.get('/games', {
