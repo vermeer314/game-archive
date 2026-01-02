@@ -3,6 +3,7 @@
   gap: 20px;
   padding: 20px;
   align-items: flex-start;
+  background-color: #121212;
 }
 
 .navbar {
@@ -10,9 +11,12 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #121212;
+  background-color: #181818;
   gap: 25px;
   padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  align-items: center;
 }
 
 .title {
@@ -21,6 +25,7 @@
 
 .main-wrapper {
   padding: 0px;
+  background-color: #121212;
 }
 
 .main-content {
@@ -40,10 +45,13 @@
   overflow: hidden;
   border: 1px black solid;
   transition: transform 0.2s ease-in-out;
+  background-color: #202020;
+  color: white;
 }
 
 .game-card:hover {
   transform: scale(1.03);
+  background-color: #2a2a2a;
 }
 
 .card-image-wrap {
@@ -62,6 +70,46 @@
   object-position: center;
 }
 
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  box-sizing: border-box;
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  /* 말줄임표 설정 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-content-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.platform-icon-list {
+  display: flex;
+  gap: 10px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .metacritic-badge {
   border: 1px solid;
   padding: '2px 5px';
@@ -72,12 +120,14 @@
 .sidebar {
   flex: 0 0 200px;
   position: sticky;
-  top: 80px;
-  height: calc(100vh - 80px);
+  top: 78px;
+  height: calc(100vh - 78px);
   padding: 10px;
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  background-color: #181818;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sidebar::-webkit-scrollbar {
@@ -112,18 +162,32 @@
 }
 
 .select-wrap {
-  padding: 5px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 15px;
+  margin-left: 20px;
+  margin-top: 10px;
+  background-color: #202020;
+  color: white;
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  border-radius: 8px;
+  font-size: 16px;
+  gap: 10px;
+  width: fit-content;
 }
 
-.search-input {
-  width: 50vw;
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: 1px solid #333;
-  background-color: #2a2a2a;
+.select-wrap select {
+  width: 200px;
+  height: 40px;
+  padding: 0 15px;
+  background-color: #202020; /* 카드 배경색과 맞추면 예뻐요 */
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   outline: none;
-  transition: border-color 0.2s;
+  cursor: pointer;
+  appearance: none; /* 브라우저 기본 화살표 제거 (선택사항) */
 }
 
 .search-input:focus {

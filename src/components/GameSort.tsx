@@ -1,7 +1,7 @@
 function GameSort({ sortOrder, onSelectSortOrder }: Props) {
   return (
     <form className="select-wrap">
-      <label>Order by: </label>
+      <label className="select-label">Order by: </label>
       <select
         className="sort-select"
         value={sortOrder}
