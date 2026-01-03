@@ -170,7 +170,6 @@
   margin-top: 10px;
   background-color: #202020;
   color: white;
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
   border-radius: 8px;
   font-size: 16px;
   gap: 10px;
@@ -181,13 +180,12 @@
   width: 200px;
   height: 40px;
   padding: 0 15px;
-  background-color: #202020; /* 카드 배경색과 맞추면 예뻐요 */
+  background-color: #202020;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   outline: none;
   cursor: pointer;
-  appearance: none; /* 브라우저 기본 화살표 제거 (선택사항) */
 }
 
 .search-input:focus {
@@ -225,4 +223,28 @@
 .skeleton-rating {
   width: 90%;
   height: 24px;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  margin: 20px;
+  border: 1px solid;
+  color: white;
+}
+
+.retry-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #66cc33;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }

@@ -12,7 +12,11 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [searchText, setSearchText] = useState('');
 
-  const { games, isLoading } = useGames(sortOrder, selectedGenre, searchText);
+  const { games, isLoading, error } = useGames(
+    sortOrder,
+    selectedGenre,
+    searchText
+  );
   const genres = useGenres();
 
   // if (isLoading) return <div>Loading...</div>;
@@ -39,7 +43,7 @@ function App() {
         <main className="main-content">
           {/* Ordering */}
           <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
-          <GameGrid games={games} isLoading={isLoading} />
+          <GameGrid games={games} isLoading={isLoading} error={error} />
         </main>
       </div>
     </div>
