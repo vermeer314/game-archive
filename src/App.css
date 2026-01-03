@@ -193,3 +193,36 @@
 .search-input:focus {
   border-color: gray;
 }
+
+.skeleton-image,
+.skeleton-title,
+.skeleton-icons,
+.skeleton-rating {
+  background-color: #333;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite linear alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.skeleton-title {
+  width: 80%;
+  height: 24px;
+}
+
+.skeleton-icons {
+  width: 50%;
+  height: 24px;
+}
+
+.skeleton-rating {
+  width: 90%;
+  height: 24px;
+}

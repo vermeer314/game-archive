@@ -23,7 +23,6 @@ function App() {
         <h1 className="title">Game Archive</h1>
         {/* Searchbar */}
         <SearchInput
-          // inputRef={inputRef}
           onSearch={setSearchText}
           onResetGenre={() => setSelectedGenre('')}
         />
@@ -40,8 +39,7 @@ function App() {
         <main className="main-content">
           {/* Ordering */}
           <GameSort sortOrder={sortOrder} onSelectSortOrder={setSortOrder} />
-          {/* 데이터를 가져올 때 헤더 부분은 유지하고 데이터를 가져오는 부분만 로딩 처리 */}
-          {isLoading ? <div>Loading...</div> : <GameGrid games={games} />}
+          <GameGrid games={games} isLoading={isLoading} />
         </main>
       </div>
     </div>
