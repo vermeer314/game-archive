@@ -85,6 +85,7 @@
   line-height: 1.2;
   /* 말줄임표 설정 */
   display: -webkit-box;
+  line-clamp: 3;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
