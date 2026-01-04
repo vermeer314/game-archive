@@ -43,7 +43,6 @@
 .game-card {
   border-radius: 10px;
   overflow: hidden;
-  border: 1px black solid;
   transition: transform 0.2s ease-in-out;
   background-color: #202020;
   color: white;

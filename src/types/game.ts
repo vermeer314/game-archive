@@ -1,18 +1,20 @@
 export interface Game {
   id: number;
   name: string;
+  slug: string;
   background_image: string;
   released: string;
   rating: number;
   ratings_count: number;
   metacritic: number;
-  playtime: number;
   platform: Platform;
-  //버전이 다른 플랫폼들을 동일한 플랫폼으로 묶어주기
-  //ex) PlayStation 3, 4, 5 >> PlayStation
   parent_platforms: { platform: Platform }[];
   genres: Genre[];
-  shotr_screenshots: ShortScreenshot[];
+}
+
+export interface GameDetail extends Game {
+  description_raw: string;
+  playtime: number;
   tags: Tag[];
 }
 
