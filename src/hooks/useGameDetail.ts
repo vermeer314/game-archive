@@ -18,6 +18,7 @@ function useGameDetail(slug: string | undefined) {
 
         const res = await apiClient.get<GameDetail>(`/games/${slug}`);
         setGameDetail(res.data);
+        console.log(res.data);
       } catch (err) {
         const axiosError = err as AxiosError;
         setError(axiosError.message || 'Something went wrong...');

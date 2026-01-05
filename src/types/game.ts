@@ -16,6 +16,8 @@ export interface GameDetail extends Game {
   description_raw: string;
   playtime: number;
   tags: Tag[];
+  developers: Developer[];
+  stores: Store[];
 }
 
 export interface Platform {
@@ -46,4 +48,23 @@ export interface GameQueryParams {
   ordering: string;
   genres?: string;
   search?: string;
+}
+
+export interface Developer {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+export interface Store {
+  id: number;
+  url: string;
+  store: StoreInfo;
+}
+
+export interface StoreInfo {
+  domain: string;
+  id: number;
+  name: string;
+  slug: string;
 }
