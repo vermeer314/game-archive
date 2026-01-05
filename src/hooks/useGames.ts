@@ -5,11 +5,11 @@ import type { AxiosError } from 'axios';
 
 function useGames(
   sortOrder: string,
-  selectedGenre: string,
-  searchText: string
+  selectedGenre: string | null,
+  searchText: string | null
 ) {
   const [games, setGames] = useState<Game[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

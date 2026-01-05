@@ -23,8 +23,13 @@ body {
   align-items: center;
 }
 
-.title {
-  color: gray;
+.logo-text {
+  text-transform: uppercase;
+  font-family: 'Arial Black', sans-serif;
+  background: linear-gradient(to right, #fff, #888);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .main-wrapper {
@@ -260,7 +265,7 @@ body {
   padding: 40px;
   max-width: 1200px;
   margin: 40px auto;
-  background-color: #1a1a1a; /* 살짝 밝은 다크 그레이 */
+  background-color: #1a1a1a;
   border-radius: 20px;
 }
 
@@ -292,7 +297,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.info-iten {
+.info-item {
   margin-bottom: 5px;
 }
 
@@ -305,9 +310,11 @@ body {
 .info-item span {
   font-size: 1.05rem;
   color: #eee;
+  padding-left: 5px;
 }
 
 .back-link {
+  width: fit-content;
   font-size: 1.05rem;
   color: #eee;
 }
@@ -353,4 +360,23 @@ body {
 .detail-skeleton-info {
   width: 100px;
   height: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  outline: none;
+  transition: background-color 0.2s;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-input:focus {
+  background-color: #444;
 }

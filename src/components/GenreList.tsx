@@ -21,8 +21,8 @@ function GenreList({ genres, onSelectGenre, selectedGenre }: Props) {
 
 interface Props {
   genres: Genre[];
-  onSelectGenre: (slug: string) => void;
-  selectedGenre: string;
+  onSelectGenre: (genre: string | null) => void;
+  selectedGenre: string | null;
 }
 
 export default GenreList;

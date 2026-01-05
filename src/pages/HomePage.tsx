@@ -5,12 +5,9 @@ import GameSort from '../components/GameSort';
 import GenreList from '../components/GenreList';
 import useGames from '../hooks/useGames';
 import useGenres from '../hooks/useGenres';
-import SearchInput from '../components/SearchInput';
 
-function HomePage() {
+function HomePage({ selectedGenre, searchText, setSelectedGenre }: Props) {
   const [sortOrder, setSortOrder] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('');
-  const [searchText, setSearchText] = useState('');
 
   const { games, isLoading, error } = useGames(
     sortOrder,
@@ -21,15 +18,6 @@ function HomePage() {
 
   return (
     <div className="container">
-      <header className="navbar">
-        <h1 className="title">Game Archive</h1>
-        {/* Searchbar */}
-        <SearchInput
-          onSearch={setSearchText}
-          onResetGenre={() => setSelectedGenre('')}
-        />
-      </header>
-
       <div className="main-wrapper">
         {/* Sidebar */}
         <GenreList
@@ -47,6 +35,12 @@ function HomePage() {
       </div>
     </div>
   );
+}
+
+interface Props {
+  selectedGenre: string | null;
+  searchText: string | null;
+  setSelectedGenre: (genre: string | null) => void;
 }
 
 export default HomePage;

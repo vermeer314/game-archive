@@ -1,15 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
 import useGameDetail from '../hooks/useGameDetail';
 import GameDetailSkeleton from '../components/GameDetailSkeleton';
+import ErrorMessage from '../components/ErrorMessage';
 
 function GameDetailPage() {
   const { slug } = useParams();
 
   const { gameDetail, isLoading, error } = useGameDetail(slug);
 
-  if (!gameDetail) return null;
-  if (error) return <div>{error} occured...</div>;
   if (isLoading) return <GameDetailSkeleton />;
+  if (error) return <ErrorMessage message={error} />;
+  if (!gameDetail) return null;
 
   return (
     <div className="detail-grid">
