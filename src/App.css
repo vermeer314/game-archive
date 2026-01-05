@@ -292,14 +292,65 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.info-iten {
+  margin-bottom: 5px;
+}
+
 .info-item h3 {
   color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 5px;
+  font-size: 1rem;
 }
 
 .info-item p,
 .info-item span {
   font-size: 1.05rem;
   color: #eee;
+}
+
+.back-link {
+  font-size: 1.05rem;
+  color: #eee;
+}
+
+.detail-skeleton {
+  background: #222;
+  background: linear-gradient(110deg, #222 8%, #333 18%, #222 33%);
+  background-size: 200% 100%;
+  animation: shine 1.5s linear infinite;
+  border-radius: 4px;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.detail-skeleton-title {
+  width: 300px;
+  height: 80px;
+}
+
+.detail-skeleton-image {
+  width: 500px;
+  height: 300px;
+}
+
+.detail-skeleton-about {
+  width: 100px;
+  height: 40px;
+}
+
+.detail-skeleton-description {
+  width: 500px;
+  height: 20px;
+}
+
+.detail-skeleton-category {
+  width: 50px;
+  height: 20px;
+}
+.detail-skeleton-info {
+  width: 100px;
+  height: 20px;
 }

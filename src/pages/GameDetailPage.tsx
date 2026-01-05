@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useGameDetail from '../hooks/useGameDetail';
+import GameDetailSkeleton from '../components/GameDetailSkeleton';
 
 function GameDetailPage() {
   const { slug } = useParams();
@@ -8,12 +9,16 @@ function GameDetailPage() {
 
   if (!gameDetail) return null;
   if (error) return <div>{error} occured...</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <GameDetailSkeleton />;
 
   return (
     <div className="detail-grid">
       {/* 왼쪽 메인 정보 */}
       <div className="main-column">
+        <Link to="/" className="back-link">
+          ← Back to Home
+        </Link>
+
         <h1 className="detail-title">{gameDetail.name}</h1>
         <figure className="card-image-wrap">
           <img src={gameDetail.background_image} alt={gameDetail.name} />
