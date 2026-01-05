@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: 'https://github.com/vermeer314/game-archive',
+  base: 'https://vermeer314.github.io/game-archive/',
   plugins: [react()],
 });
