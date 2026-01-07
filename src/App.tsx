@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GameDetailPage from './pages/GameDetailPage';
 import { useState } from 'react';
-import Navbar from './components/NavBar';
+import Navbar from './components/Navbar';
 
 function App() {
   const [searchText, setSearchText] = useState<string | null>(null);
