@@ -3,7 +3,7 @@ import SearchInput from './SearchInput';
 
 function Navbar({ onSearch, resetGenre }: Props) {
   function handleLogoClick() {
-    onSearch('');
+    onSearch(null);
     resetGenre();
   }
 
