@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# Game Archive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RAWG API를 활용하여 전 세계 게임 정보를 한눈에 확인하고 검색할 수 있는 아카이브 서비스입니다. 단순한 기능 구현을 넘어, 유지보수가 쉬운 코드 구조와 매끄러운 사용자 경험을 고민하며 제작했습니다.
 
-Currently, two official plugins are available:
+**[👉 라이브 데모 링크](https://vermeer314.github.io/game-archive/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 기술스택
 
-## React Compiler
+- **Core**: React18, TypeScript, Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Library**: React Router DOM, React Icons, Axios
 
-## Expanding the ESLint configuration
+- **Styling**: CSS3
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Deploymen**t: GitHub Pages
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 주요 기능
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**실시간 게임 검색 및 필터링**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 검색어와 장르 카테고리, 정렬 조건을 결합하여 원하는 게임을 빠르게 찾아볼 수 있습니다.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**상세 정보 대시보드**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 게임 소개글, 메타스코어, 플랫폼, 출시일, 구매처 등 핵심 데이터를 직관적인 UI로 제공합니다.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**사용자 경험(UX) 최적화**
+
+- 스켈레톤 UI를 통한 로딩 상태 시각화, 메타스코어 배지 컬러링 등 디테일한 요소를 구현하여 UX를 향상시키고자 하였습니다.
+
+## 개발 포인트
+
+**비즈니스 로직 분리 및 컴포넌트 추상화**
+
+- `useGames`, `useGameDetail` 등 커스텀 훅을 작성하여 UI와 데이터 호출 로직을 분리했습니다. 또한 컴포넌트 추상화를 통해 상위 컴포넌트에서 비즈니스 로직을 제어하고, 하위 컴포넌트는 렌더링에만 집중하도록 설계하여 책임 분리를 실현했습니다.
+
+**API 모듈화**
+
+- `api-client`를 별도로 구성하여 Axios 인스턴스를 관리합니다. 파라미터 전달 방식을 모듈화하여 중복 코드를 줄이고 가독성을 확보했습니다.
+
+**시멘틱 태그 활용**
+
+- `header`, `main`, `article`, `aside` 등 시멘틱 HTML 태그를 사용하여 웹 표준을 준수하고 SEO를 고려한 레이아웃을 구성했습니다.
+
+## 트러블슈팅
+
+**React `key` 속성을 활용한 컴포넌트 강제 초기화**
+
+- **문제** : 로고를 클릭하여 메인 페이지로 돌아왔을 때 입력창 텍스트가 지워지지 않고 남아있는 현상
+- **원인** :부모의 상태(searchText)가 변해도 자식 컴포넌트(SearchInput)가 같은 위치에서 유지되면 컴포넌트를 새로 만들지 않고 재사용합니다. 이 과정에서 컴포넌트 내부의 입력값(로컬 상태)이 초기화되지 않고 그대로 유지되어 UI 불일치가 발생하였습니다.
+- **해결** : `Navbar`에 `key={searchText}`를 부여하여 검색어 상태가 `null`로 바뀔 때 컴포넌트의 키 값이 변하게 되어, 리액트가 컴포넌트를 아예 새로 마운트시키도록 유도했습니다. 이를 통해 복잡한 `useEffect`나 상태 관리 로직 없이 UI를 초기화할 수 있었습니다.
+
+**상세 페이지 새로고침 시 404 에러**
+
+- **문제** :상세 페이지(`/games/:slug`)에서 새로고침 시 GitHub Pages 서버가 해당 경로를 찾지 못해 404 에러를 반환하는 현상
+- **원인** : Git Pages는 정적 호스팅 서비스이기 떄문에 리액트의 가짜 주소(SPA 라우팅)를 이해하지 못합니다. 새로고침을 하면 서버는 주소창의 경로에 실제 파일이 있는지 찾으려 하는데 실제로는 존재하지 않기 때문에 404 에러가 발생했습니다.
+- **해결** : 해시(`#`) 경로를 사용하는 `HashRouter`를 도입했습니다. 이를 통해 어떤 경로에서 새로고침을 하더라도 서버는 항상 루트의 `index.html`을 응답하게 하고, 이후 로드된 리액트 라우터가 해시값을 읽어 올바른 컴포넌트를 렌더링하도록 구조를 변경했습니다.
+
+**조건부 렌더링 순서에 따른 스켈레톤 UI 미출력**
+
+- **문제** : 로딩 상태임에도 불구하고 스켈레톤 UI가 화면에 출력되지 않는 현상
+- **원인** :기존 코드에서 데이터 존재 유무를 먼저 체크하는 `if (!data) return null` Early Return 문이 로딩 상태 체크보다 상단에 위치하여 로딩 중엔 데이터가 없으므로 스켈레톤 UI를 그리는 코드까지 도달하지 못하고 렌더링이 차단되었습니다.
+- **해결**: `isLoading` 조건문을 최상단으로 재배치하여, 데이터 fetch가 완료되기 전까지 스켈레톤 UI가 우선적으로 렌더링되도록 로직 순서를 수정했습니다.
+
+## 프로젝트 구조
+
+```text
+src/
+ ├── components/  # 재사용 가능한 UI 컴포넌트
+ ├── hooks/       # 데이터 fetch 및 비즈니스 로직
+ ├── pages/       # 페이지 단위 컴포넌트
+ ├── services/    # API 인스턴스 및 클라이언트 설정
+ ├── types/       # 공통 인터페이스 및 타입 정의
+ └── App.tsx      # 전역 상태 관리 및 라우팅 설정
 ```
