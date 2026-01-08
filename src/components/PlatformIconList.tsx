@@ -27,7 +27,7 @@ function PlatformIconList({ platforms }: Props) {
 
   return (
     <div className="platform-icon-list">
-      {platforms.map((platform) => {
+      {platforms?.map((platform) => {
         const Icon = icons[platform.slug];
         return Icon ? <Icon key={platform.id} color="gray" /> : null;
       })}

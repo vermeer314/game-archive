@@ -20,7 +20,7 @@ function GameCard({ game }: { game: Game }) {
           </header>
           <div className="card-content-footer">
             <PlatformIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
+              platforms={game.parent_platforms?.map((p) => p.platform)}
             />
 
             {/* 사용자 점수와 메타크리틱 점수 */}
